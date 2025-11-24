@@ -46,3 +46,26 @@ API RESTful para gerenciamento de **carros**, **motoristas** e **utilizações d
 ---
 
 ## 📁 Estrutura do Projeto
+
+API organizada no padrão de Arquitetura em Camadas, separando responsabilidades em Controllers, Services, Validation e camada de Acesso a Dados (Prisma), seguindo boas práticas de modularização e clean code.
+
+```
+src
+├── controllers
+│ ├── car
+│ ├── driver
+│ └── utilizacao
+├── prisma
+│ └── schema.prisma
+├── services
+│ ├── car
+│ ├── driver
+│ └── utilizacao
+├── validations
+│ ├── carValidation.ts
+│ ├── driverValidation.ts
+│ └── utilizacaoValidation.ts
+├── routes.ts
+└── server.ts
+
+```
