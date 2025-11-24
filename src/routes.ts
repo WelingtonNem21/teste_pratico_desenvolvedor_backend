@@ -13,13 +13,35 @@ import { CreateUtilizacaoController } from "./controllers/utilizacao/CreateUtili
 import { FinalizarUtilizacaoController } from "./controllers/utilizacao/FinalizarUtilizacaoController";
 import { ListUtilizacoesController } from "./controllers/utilizacao/ListUtilizacoesController";
 
+import { validate } from "./validations/validate";
+
+// Car validations
+import { createCarSchema, updateCarSchema } from "./validations/car";
+
+// Driver validations
+import { createDriverSchema, updateDriverSchema } from "./validations/driver";
+
+// Utilização validations
+import {
+  createUtilizacaoSchema,
+  finalizarUtilizacaoSchema,
+} from "./validations/utilizacao";
+
 const routes = Router();
 
 //car
 
-routes.post("/car", new CreateCarController().handle);
+routes.post(
+  "/car",
+  validate(createCarSchema),
+  new CreateCarController().handle
+);
 
-routes.put("/car/:id", new UpdateCarController().handle);
+routes.put(
+  "/car/:id",
+  validate(updateCarSchema),
+  new UpdateCarController().handle
+);
 
 routes.delete("/car/:id", new DeleteCarController().handle);
 
@@ -29,9 +51,17 @@ routes.get("/car", new ByCorAsmarcaController().handle);
 
 //motorista
 
-routes.post("/driver", new CreateDriverController().handle);
+routes.post(
+  "/driver",
+  validate(createDriverSchema),
+  new CreateDriverController().handle
+);
 
-routes.put("/driver/:id", new UpdateDriverController().handle);
+routes.put(
+  "/driver/:id",
+  validate(updateDriverSchema),
+  new UpdateDriverController().handle
+);
 
 routes.delete("/driver/:id", new DeleteDriverController().handle);
 
@@ -41,10 +71,15 @@ routes.get("/driver", new ByNomeDriverController().handle);
 
 //utilizacao
 
-routes.post("/utilizacao", new CreateUtilizacaoController().handle);
+routes.post(
+  "/utilizacao",
+  validate(createUtilizacaoSchema),
+  new CreateUtilizacaoController().handle
+);
 
 routes.put(
   "/utilizacao/finalizar/:id",
+  validate(finalizarUtilizacaoSchema),
   new FinalizarUtilizacaoController().handle
 );
 
