@@ -69,3 +69,92 @@ src
 └── server.ts
 
 ```
+
+## ▶️ Como executar e testar a aplicação
+
+### 1️⃣ Pré-requisitos
+
+Antes de iniciar, você precisa ter instalado:
+
+- Node.js (versão 18+)
+- PostgreSQL
+- Git
+- NPM ou Yarn
+
+---
+
+### 3️⃣ Instalar dependências
+
+```sh
+git clone https://github.com/WelingtonNem21/teste_pratico_desenvolvedor_backend.git
+cd teste_pratico_desenvolvedor_backend
+
+```
+
+### 3️⃣ Instalar dependências
+
+```
+npm install
+```
+
+### 4️⃣ Configurar as variáveis de ambiente
+
+```
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/seu_banco"
+```
+
+Crie o banco de dados no PostgreSQL antes de seguir.
+
+### 5️⃣ Rodar as migrations do Prisma
+
+```
+npx prisma migrate dev
+```
+
+### 6️⃣ Iniciar o servidor
+
+```
+npm run dev
+```
+
+A API iniciará normalmente em:
+
+```
+http://localhost:8080
+```
+
+### 🔹 Criar um carro — POST /car
+
+```
+{
+  "placa": "ABC1234",
+  "cor": "Prata",
+  "marca": "Fiat"
+}
+```
+
+### 🔹 Criar motorista — POST /driver
+
+```
+{
+  "nome": "João da Silva"
+}
+```
+
+### 🔹 Registrar utilização — POST /utilizacao
+
+```
+{
+  "motoristaId": 1,
+  "automovelId": 1,
+  "motivoUtilizacao": "Entrega de mercadorias"
+}
+```
+
+### 🔹 Finalizar utilização — PUT /utilizacao/finalizar/1
+
+```
+{
+  "dataTerminoUtilizacao": "2025-11-24T10:00:00.000Z"
+}
+```
